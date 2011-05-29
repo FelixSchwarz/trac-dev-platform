@@ -31,7 +31,7 @@ from trac.perm import DefaultPermissionPolicy, PermissionCache, PermissionSystem
 from trac.web.api import Request, RequestDone
 from trac.web.main import RequestDispatcher
 
-from trac_dev_platform.lib.pythonic_testcase import *
+from trac_dev_platform.test.lib.pythonic_testcase import *
 from trac_dev_platform.test.mock_request import mock_request
 
 
