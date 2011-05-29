@@ -24,18 +24,20 @@
 
 from cStringIO import StringIO
 import re
-from unittest import TestCase
 
 from trac.core import Component, ComponentMeta
 from trac.perm import DefaultPermissionPolicy, PermissionCache, PermissionSystem
 from trac.web.api import Request, RequestDone
 from trac.web.main import RequestDispatcher
 
+from trac_dev_platform.lib.simple_super import SuperProxy
 from trac_dev_platform.test.lib.pythonic_testcase import *
 from trac_dev_platform.test.mock_request import mock_request
 
 
-class TracTest(TestCase):
+class TracTest(PythonicTestCase):
+    
+    super = SuperProxy()
     
     def enable_ticket_subsystem(self):
         # ensure that all of trac's ticket components will be found by importing
