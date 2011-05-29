@@ -34,10 +34,13 @@
 #      see jinja2/debug.py for some code that does such hacks:
 #          https://github.com/mitsuhiko/jinja2/blob/master/jinja2/debug.py
 
+from unittest import TestCase
+
+from trac_dev_platform.lib.simple_super import SuperProxy
 
 __all__ = ['assert_contains', 'assert_equals', 'assert_false', 'assert_length',
            'assert_none', 'assert_not_none', 'assert_not_equals', 
-           'assert_raises', 'assert_true', ]
+           'assert_raises', 'assert_true', 'PythonicTestCase', ]
 
 
 def assert_raises(exception, callable, message=None):
@@ -112,6 +115,17 @@ def assert_is_not_empty(actual, message=None):
     if message is None:
         raise AssertionError(default_message)
     raise AssertionError(default_message + ': ' + message)
+
+
+
+class PythonicTestCase(TestCase):
+    
+    super = SuperProxy()
+    
+    def __getattr__(self, name):
+        if name in globals():
+            return globals()[name]
+        return super(PythonicTestCase, self).__getattr__(name)
 
 
 # almost_equals
