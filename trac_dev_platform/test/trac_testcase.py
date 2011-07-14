@@ -109,6 +109,12 @@ class TracTest(PythonicTestCase):
         process_request = lambda: RequestDispatcher(self.env).dispatch(req)
         assert_raises(RequestDone, process_request)
         response = req.captured_response
+        # Request.send_file will just set _response without using write
+        #     - I can't add a property to the Request object dynamically 
+        #       *per-instance* (in Python you can only add these *per class*)
+        #     - Dynamically adding '__setattr__' does also not work per instance
+        if req._response is not None:
+            response.body.write(req._response.read())
         response.body.seek(0)
         return response
     
