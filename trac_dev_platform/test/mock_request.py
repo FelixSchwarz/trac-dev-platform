@@ -107,7 +107,7 @@ def mock_request(path, request_attributes=None, **kwargs):
         from trac.test import MockPerm
         self.perm = PermissionCache(env, 'anonymous')
         self.form_token = None
-        self.chrome = dict(warnings=[], notices=[], scripts=[])
+        self.chrome = dict(warnings=[], notices=[], scripts=[], script_data={})
 #        self.chrome = Chrome(env).prepare_request(self),
         #{'wiki': <function <lambda> at 0x7f33f0640b90>, 'search': <function <lambda> at 0x7f33f0640c80>, 'tags': <function <lambda> at 0x7f33f0640f50>, 'chrome': <function <lambda> at 0x7f33f05611b8>, 'timeline': <function <lambda> at 0x7f33f0640de8>, 'about': <function <lambda> at 0x7f33f0640e60>, 'admin': <function <lambda> at 0x7f33f0640d70>, 'logout': <function <lambda> at 0x7f33f0640cf8>, 'prefs': <function <lambda> at 0x7f33f0640ed8>}
     
