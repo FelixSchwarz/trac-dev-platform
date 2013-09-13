@@ -2,3 +2,7 @@ syntax:glob
 data
 dist
 *.egg-info
+.settings
+.project
+.pydevproject
+
