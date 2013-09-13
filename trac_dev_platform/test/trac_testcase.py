@@ -22,12 +22,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-from cStringIO import StringIO
-import re
-
 from trac.core import Component, ComponentMeta
 from trac.perm import DefaultPermissionPolicy, PermissionCache, PermissionSystem
-from trac.web.api import Request, RequestDone
+from trac.web.api import RequestDone
 from trac.web.main import RequestDispatcher
 
 from trac_dev_platform.lib.simple_super import SuperProxy
