@@ -28,6 +28,9 @@ import re
 from trac.web.api import Request, RequestDone
 from trac.web.chrome import Chrome
 
+
+__all__ = ['mock_request']
+
 class MockResponse(object):
     
     def __init__(self):

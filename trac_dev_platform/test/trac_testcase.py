@@ -32,6 +32,8 @@ from trac_dev_platform.test.lib.pythonic_testcase import *
 from trac_dev_platform.test.mock_request import mock_request
 
 
+__all__ = ['TracTest']
+
 class TracTest(PythonicTestCase):
     
     super = SuperProxy()
