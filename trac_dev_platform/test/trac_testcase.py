@@ -93,6 +93,11 @@ class TracTest(PythonicTestCase):
     def assert_has_no_permission(self, username, action):
         assert_false(self.has_permission(username, action))
     
+    def create_custom_field(self, name, type_):
+        config = self.env.config
+        config.set('ticket-custom', name, type_)
+        config.save()
+    
     def request(self, path, request_attributes=None, **kwargs):
         request = mock_request(path, request_attributes, **kwargs)
         request.perm = PermissionCache(self.env, username=request.remote_user)
