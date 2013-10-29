@@ -131,7 +131,7 @@ class TracTest(PythonicTestCase):
         return str(component_or_name.__module__ + "." + class_name).lower()
     
     def clear_trac_rule_cache(self):
-        # self.env_rules is only generated once, further changes to the config
+        # env._rules is only generated once, further changes to the config
         # do not update the rules, so we need to reset it manually
         if hasattr(self.env, '_rules'):
             del self.env._rules
