@@ -28,9 +28,22 @@ import tempfile
 from trac import __version__ as trac_version
 
 
-if trac_version.startswith('0.12'):
+if not trac_version.startswith('0.11'):
     from trac.test import EnvironmentStub
-    EnvironmentStub = EnvironmentStub
+    
+    class EnvironmentStub10(EnvironmentStub):
+        # Trac 1.0 has a @lazy decorator which replaces the decorated method
+        # with a plain dict after first access. For testing purposes I'll just
+        # include the actual code from Trac but without any caching.
+        @property
+        def _component_rules(self):
+            _rules = {}
+            for name, value in self.components_section.options():
+                if name.endswith('.*'):
+                    name = name[:-2]
+                _rules[name.lower()] = value.lower() in ('enabled', 'on')
+            return _rules
+    EnvironmentStub = EnvironmentStub10
 else:
     from trac.env import Environment
     from trac.test import EnvironmentStub
